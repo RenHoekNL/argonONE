@@ -33,7 +33,7 @@ reboot
 ```
 After reboot, check /dev for the new device
 
-Now to install the daemon, make sure it boots at boot and enable the poweroff
+Now to install the daemon, make sure it starts at boot and enable the poweroff
 ```
 cd /storage/.config/
 wget https://github.com/RenHoekNL/argonONE/raw/master/argonONE
