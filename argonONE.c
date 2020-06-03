@@ -91,7 +91,7 @@ sync();
 // I prefer not to invoke the shutdown from here. Better to let let init call us via /lib/systemd/system-shutdown/
 // However, lakka (for which I made this) does not call powerdown programs. So I have little choice for now.
 
-sendI2C(255);    // Power off, takes a few seconds
+//sendI2C(255);    // Power off, takes a few seconds
 
 char *args[]={"/sbin/shutdown", "-h", "now"};
 if(execve(args[0], &args[0], NULL) == -1)
