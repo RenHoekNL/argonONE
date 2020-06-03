@@ -5,16 +5,22 @@ This release is messy and carries the 'It works for me!' label. Use
 at your own risk.
 
 ## Background 
-These sources are compiled with 'musl' on a Raspbian distro. The result is
-a ~25kb static executable that will not have the python dependency that
-the original script has.
+The ArgonONE case comes with a Python script to respond to powerbutton presses
+and to set the fan speed depending on the CPU temperature. The Python dependency
+is not always easy to fix, so I recreated the functionailty in a C program.
 
-## Installation
-I need the following files:
+These sources are compiled with 'musl' on a Raspbian distro. The result is
+a ~25kb static executable that has no dependencies on any libraries. It should
+run on basically any Pi4 distro.
+
+## Installation on Lakka
+*The following instructions are tailored to the [Lakka](http://www.lakka.tv/get/linux/rpi4/) distro:*
+
+The daemon has the following requirements:
 
 `ls -l /dev/vcio /dev/i2c-1 /sys/class/gpio/export /sbin/shutdown`
 
-You can get the i2c-1 device on lakka by editing the config.txt file:
+You can get the i2c-1 device by editing the config.txt file:
 ```
 mount -o remount,rw /flash
 cp -a /flash/config.txt /flash/config.ori            # Make a backup
@@ -44,3 +50,13 @@ cat << 'EOF' > /storage/.config/shutdown.sh
 /storage/.config/argonONE.poweroff
 EOF
 ```
+
+## Installation on Raspbian
+- Enable the I2C device. See the instructions above. Instead of `/flash`, use `/boot`
+```
+cd /usr/local/sbin
+wget https://github.com/RenHoekNL/argonONE/raw/master/argonONE
+chmod a+x argonONE
+ln -s /usr/local/sbin/argonONE /lib/systemd/system-shutdown/argonONE.poweroff
+```
+- Edit `/etc/rc.local` and put in `/usr/local/sbin/argonONE &`
