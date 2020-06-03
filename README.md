@@ -40,7 +40,7 @@ cat << 'EOF' > /storage/.config/autostart.sh
 ) &
 EOF
 
-cat << 'EOF' > /storage/.config/autostart.sh
+cat << 'EOF' > /storage/.config/shutdown.sh
 /storage/.config/argonONE.poweroff
 EOF
 ```
