@@ -1,5 +1,5 @@
 # argonONE
-Standalone daemon for Argon40 One Pi 4 case
+Standalone daemon for the [Argon40 One Pi 4 case](https://www.argon40.com/argon-one-raspberry-pi-4-case.html)
 
 This release is messy and carries the 'It works for me!' label. Use
 at your own risk.
