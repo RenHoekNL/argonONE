@@ -46,9 +46,25 @@ cat << 'EOF' > /storage/.config/autostart.sh
 ) &
 EOF
 
-cat << 'EOF' > /storage/.config/shutdown.sh
-/storage/.config/argonONE.poweroff
+# Until Lakka supports shutdown.sh, we'll have to use systemd
+#cat << 'EOF' > /storage/.config/shutdown.sh
+#/storage/.config/argonONE.poweroff
+#EOF
+
+cat << 'EOF' > argonONE.service
+[Unit]
+Description=ArgonONE poweroff
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStop=/storage/.config/argonONE.poweroff
+
+[Install]
+WantedBy=multi-user.target
 EOF
+systemctl enable argonONE
+systemctl start argonONE
 ```
 
 ## Installation on Raspbian
