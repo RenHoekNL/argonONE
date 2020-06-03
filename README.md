@@ -10,12 +10,12 @@ the original script has.
 
 The only things it needs are the following device files:
 
-/dev/vcio                 - Reading temperature
-/dev/i2c-1                - Controlling fan and poweroff
-/sys/class/gpio/export    - Keeping track of the power button clicks
+- /dev/vcio                 - Reading temperature
+- /dev/i2c-1                - Controlling fan and poweroff
+- /sys/class/gpio/export    - Keeping track of the power button clicks
 
 And optionally:
-/sbin/shutdown            - Controlled shutdown
+- /sbin/shutdown            - Controlled shutdown
 
 You can get the i2c-1 device on lakka by editing the config.txt file:
 ```
