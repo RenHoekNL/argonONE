@@ -13,6 +13,23 @@ These sources are compiled with 'musl' on a Raspbian distro. The result is
 a ~25kb static executable that has no dependencies on any libraries. It should
 run on basically any Pi4 distro.
 
+## Installation on RetroPie
+Download RetroPie here: https://retropie.org.uk/download/#Pre-made_images_for_the_Raspberry_Pi
+
+Once you are up and running and in a SSH shell, do the following:
+```
+sudo bash -login
+raspi-config nonint do_i2c 0
+cd /usr/local/sbin/
+wget https://github.com/RenHoekNL/argonONE/raw/master/argonONE
+chmod a+x argonONE
+sed -i 's~^exit 0~/usr/local/sbin/argonONE \&\nexit 0~' /etc/rc.local
+ln -s /usr/local/sbin/argonONE /lib/systemd/system-shutdown/argonONE.poweroff
+sync
+reboot
+```
+Once booted, double-clicking the power button will do a shutdown and shutdown via the menu will turn the boards power off.
+
 ## Installation on Lakka
 *The following instructions are tailored to the [Lakka](http://www.lakka.tv/get/linux/rpi4/) distro:*
 
