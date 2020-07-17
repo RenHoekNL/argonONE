@@ -4,6 +4,12 @@ Standalone daemon for the [Argon40 One Pi 4 case](https://www.argon40.com/argon-
 This release is messy and carries the 'It works for me!' label. Use
 at your own risk.
 
+Note that this daemon will do two things:
+* Tturn on and speed up the fan when the temperature goes higher
+* Watch the power button and do a clean shutdown on a double click
+
+Holding the power button for 3 seconds or longer will do a hard (i.e. unclean) shutdown and can cause filesystem corruption. This is done in hardware and the daemon is unable to respond to it.
+
 ## Background 
 The ArgonONE case comes with a Python script to respond to powerbutton presses
 and to set the fan speed depending on the CPU temperature. The Python dependency
@@ -63,12 +69,7 @@ cat << 'EOF' > /storage/.config/autostart.sh
 ) &
 EOF
 
-# Until Lakka supports shutdown.sh, we'll have to use systemd
-#cat << 'EOF' > /storage/.config/shutdown.sh
-#/storage/.config/argonONE.poweroff
-#EOF
-
-cat << 'EOF' > argonONE.service
+cat << 'EOF' > /storage/.config/system.d/argonONE.service
 [Unit]
 Description=ArgonONE poweroff
 
