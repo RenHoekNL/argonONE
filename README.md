@@ -5,7 +5,7 @@ This release is messy and carries the 'It works for me!' label. Use
 at your own risk.
 
 Note that this daemon will do two things:
-* Tturn on and speed up the fan when the temperature goes higher
+* Turn on and speed up the fan when the CPU temperature goes up
 * Watch the power button and do a clean shutdown on a double click
 
 Holding the power button for 3 seconds or longer will do a hard (i.e. unclean) shutdown and can cause filesystem corruption. This is done in hardware and the daemon is unable to respond to it.
